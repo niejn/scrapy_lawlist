@@ -101,3 +101,19 @@ UM_distinctid=164d5d1212b397-0c676fcecd50d9-5e442e19-15f900-164d5d1212c31c
 '''
 request_with_cookies = Request(url="http://c.biancheng.net/cpp/biancheng/view/2995.html", cookies=cookies,
                                headers={'Referer':'http://c.biancheng.net/cpp/biancheng/cpp/rumen/'})
+
+
+
+#
+# Just remove all pipelines from main settings and use this inside spider.
+#
+# This will define the pipeline to user per spider
+
+
+# class testSpider(InitSpider):
+#     name = 'test'
+#     custom_settings = {
+#         'ITEM_PIPELINES': {
+#             'app.MyPipeline': 400
+#         }
+#     }

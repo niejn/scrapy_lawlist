@@ -23,7 +23,7 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) ' \
 #USER_AGENT = 'announcement (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -43,18 +43,18 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-DEFAULT_REQUEST_HEADERS = {
-	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-	'Accept-Encoding': 'gzip, deflate',
-	'Accept-Language': 'zh-CN,zh;q=0.9',
-	'Connection': 'keep-alive',
-	'Origin': 'http://vip.biancheng.net',
-	'Host': 'vip.biancheng.net',
-	'Referer': 'http://vip.biancheng.net',
-	'Upgrade-Insecure-Requests': '1',
-	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36',
-	'Upgrade-Insecure-Requests': '1',
-}
+# DEFAULT_REQUEST_HEADERS = {
+# 	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+# 	'Accept-Encoding': 'gzip, deflate',
+# 	'Accept-Language': 'zh-CN,zh;q=0.9',
+# 	'Connection': 'keep-alive',
+# 	'Origin': 'http://vip.biancheng.net',
+# 	'Host': 'vip.biancheng.net',
+# 	'Referer': 'http://vip.biancheng.net',
+# 	'Upgrade-Insecure-Requests': '1',
+# 	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36',
+# 	'Upgrade-Insecure-Requests': '1',
+# }
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
@@ -64,11 +64,15 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
+# DOWNLOADER_MIDDLEWARES = {
+#    # 'announcement.middlewares.AnnouncementDownloaderMiddleware': 543,
+#
+#    'announcement.middlewares.BrowserCookiesMiddleware': 701,
+# }
 DOWNLOADER_MIDDLEWARES = {
-   # 'announcement.middlewares.AnnouncementDownloaderMiddleware': 543,
-
-   'announcement.middlewares.BrowserCookiesMiddleware': 701,
-}
+        'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': None,
+        'announcement.middlewares.BrowserCookiesMiddleware': 701,
+     }
 # /from scrapy import Request
 # url = 'http://c.biancheng.net/cpp/biancheng/view/2995.html'
 # fetch(Request(url, meta={'cookiejar': 'chrome'}))
@@ -85,9 +89,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'announcement.pipelines.DuplicatesPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'announcement.pipelines.DuplicatesPipeline': 300,
+# }
 # 'example.pipelines.PriceConverterPipeline': 300,
 
 # Enable and configure the AutoThrottle extension (disabled by default)

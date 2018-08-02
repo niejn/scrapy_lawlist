@@ -4,10 +4,22 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import logging
+import os
+import time
 
 from scrapy import signals
 import browsercookie
 from scrapy.downloadermiddlewares.cookies import CookiesMiddleware
+
+from scrapy.http import Request
+from scrapy.item import BaseItem
+from scrapy.utils.request import request_fingerprint
+from scrapy.utils.project import data_path
+from scrapy.utils.python import to_bytes
+from scrapy.exceptions import NotConfigured
+from scrapy import signals
+
 
 class AnnouncementSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,

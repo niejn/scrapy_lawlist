@@ -17,4 +17,5 @@ class AnnouncementItem(scrapy.Item):
     pub_id = scrapy.Field()
     body_text = scrapy.Field()
     update_time = scrapy.Field()
+    url = scrapy.Field()
 
