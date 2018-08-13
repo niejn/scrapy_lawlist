@@ -1,24 +1,20 @@
+from scrapy.utils.project import get_project_settings
 from twisted.internet import reactor, defer
 from scrapy.crawler import CrawlerRunner
 from scrapy.utils.log import configure_logging
-
-# class MySpider1(scrapy.Spider):
-#     # Your first spider definition
-#     ...
-#
-# class MySpider2(scrapy.Spider):
-#     # Your second spider definition
 from ann_spiders.spiders.cffex import CffexSpider
+from ann_spiders.spiders.shfe import BulletinSpider
 
-...
 
 configure_logging()
-runner = CrawlerRunner()
+settings = get_project_settings()
+runner = CrawlerRunner(settings)
+# runner = CrawlerRunner()
 
 @defer.inlineCallbacks
 def crawl():
     yield runner.crawl(CffexSpider)
-    # yield runner.crawl(MySpider2)
+    yield runner.crawl(BulletinSpider)
     reactor.stop()
 
 crawl()
